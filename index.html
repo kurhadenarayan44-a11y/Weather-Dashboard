@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="weather-bg" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header>
+    <h1>Weather Dashboard</h1>
+    <button type="button" id="theme-toggle">🌙 Dark mode</button>
+  </header>
+
+  <!-- Dashboard content -->
+  <main>
+    <!-- City search -->
+    <form id="search-form">
+      <label for="city-input">City name</label>
+      <input id="city-input" type="text" placeholder="Enter a city name">
+      <button type="submit" id="search-btn">Search</button>
+      <button type="button" id="location-btn">📍 Use my location</button>
+    </form>
+
+    <!-- Recent searches -->
+    <div id="recent-searches"></div>
+
+    <!-- Status messages -->
+    <div id="status" aria-live="polite"></div>
+
+    <!-- Current weather -->
+    <section id="current-weather" aria-labelledby="current-heading">
+      <h2 id="current-heading">Current weather</h2>
+      <div id="current-card"></div>
+      <div class="unit-toggle">
+        <button type="button" id="unit-c" aria-pressed="true">°C</button>
+        <button type="button" id="unit-f" aria-pressed="false">°F</button>
+      </div>
+      <button type="button" id="save-favourite-btn">⭐ Save this city</button>
+    </section>
+
+    <!-- Five-day forecast -->
+    <section id="forecast" aria-labelledby="forecast-heading">
+      <h2 id="forecast-heading">5-day forecast</h2>
+      <div id="forecast-container" class="forecast-grid"></div>
+    </section>
+
+    <!-- Hourly forecast -->
+    <section id="hourly" aria-labelledby="hourly-heading">
+      <h2 id="hourly-heading">Next 12 hours</h2>
+      <div id="hourly-container" class="hourly-scroll"></div>
+    </section>
+
+    <!-- Favourite cities -->
+    <section id="favourites" aria-labelledby="favourites-heading">
+      <h2 id="favourites-heading">Favourite cities</h2>
+      <ul id="favourites-list"></ul>
+      <p id="no-favourites">No favourites yet</p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>Weather data by Open-Meteo</footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
