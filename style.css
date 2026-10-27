@@ -1,0 +1,281 @@
+/* Theme variables */
+:root {
+	color-scheme: light;
+	--bg: #edf4f6;
+	--text: #20313d;
+	--card: #ffffff;
+	--accent: #087f8c;
+	--border: #c9d8dd;
+	--error: #b42318;
+	--shadow: 0 8px 24px rgb(25 55 65 / 12%);
+}
+
+body.dark-mode {
+	color-scheme: dark;
+	--bg: #111d23;
+	--text: #edf5f5;
+	--card: #1e3038;
+	--accent: #6dd3c6;
+	--border: #3a5059;
+	--error: #ff8585;
+	--shadow: 0 8px 24px rgb(0 0 0 / 28%);
+}
+
+/* Reset */
+* {
+	box-sizing: border-box;
+}
+
+/* Layout */
+body {
+	min-height: 100vh;
+	margin: 0;
+	padding: 24px;
+	background: var(--bg);
+	color: var(--text);
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	line-height: 1.5;
+}
+
+.weather-bg {
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	background: var(--bg);
+	transition: background 0.5s;
+}
+
+header,
+main,
+footer {
+	width: 100%;
+	max-width: 900px;
+	margin: 0 auto;
+}
+
+header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	margin-bottom: 28px;
+}
+
+main {
+	display: grid;
+	gap: 24px;
+}
+
+footer {
+	margin-top: 32px;
+	padding: 16px 0;
+	color: var(--text);
+	text-align: center;
+}
+
+h1,
+h2,
+h3,
+p {
+	margin: 0;
+}
+
+h1 {
+	font-size: 2rem;
+	overflow-wrap: anywhere;
+}
+
+h2 {
+	margin-bottom: 12px;
+	font-size: 1.4rem;
+}
+
+h3 {
+	font-size: 1.1rem;
+}
+
+p {
+	margin-bottom: 8px;
+}
+
+/* Search */
+form {
+	margin: 0;
+}
+
+#search-form {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: end;
+	gap: 12px;
+}
+
+label {
+	flex: 0 0 100%;
+	font-weight: 600;
+}
+
+input {
+	min-width: 0;
+	padding: 11px 12px;
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	background: var(--card);
+	color: var(--text);
+	font: inherit;
+}
+
+#city-input {
+	flex: 1 1 16rem;
+}
+
+button {
+	min-height: 44px;
+	padding: 9px 16px;
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	background: var(--card);
+	color: var(--text);
+	cursor: pointer;
+	font: inherit;
+	transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+	overflow-wrap: anywhere;
+}
+
+button:hover {
+	box-shadow: var(--shadow);
+	transform: translateY(-1px);
+}
+
+button:focus-visible,
+input:focus-visible {
+	outline: 3px solid var(--accent);
+	outline-offset: 2px;
+}
+
+#theme-toggle,
+#search-btn {
+	border-color: var(--accent);
+	background: var(--accent);
+	color: var(--bg);
+}
+
+/* Recent searches */
+.chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.chip {
+	min-height: 36px;
+	padding: 6px 12px;
+	border-radius: 999px;
+}
+
+/* Status */
+#status {
+	min-height: 1.5rem;
+	padding: 12px;
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	background: var(--card);
+}
+
+.spinner {
+	display: inline-block;
+	width: 1.25rem;
+	height: 1.25rem;
+	border: 3px solid var(--border);
+	border-top-color: var(--accent);
+	border-radius: 50%;
+	animation: spin 0.8s linear infinite;
+	vertical-align: middle;
+}
+
+.error {
+	color: var(--error, red);
+}
+
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* Current weather */
+#current-card {
+	padding: 24px;
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	background: var(--card);
+	box-shadow: var(--shadow);
+	text-align: center;
+}
+
+/* Forecast */
+.forecast-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	gap: 16px;
+}
+
+.forecast-card {
+	min-width: 0;
+	padding: 18px;
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	background: var(--card);
+	box-shadow: var(--shadow);
+	text-align: center;
+	overflow-wrap: anywhere;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+	body {
+		padding: 16px 14px;
+	}
+
+	header {
+		align-items: stretch;
+		flex-direction: column;
+		margin-bottom: 20px;
+	}
+
+	h1 {
+		font-size: 1.7rem;
+	}
+
+	#search-form {
+		align-items: stretch;
+		flex-direction: column;
+	}
+
+	label {
+		flex-basis: auto;
+	}
+
+	#city-input {
+		width: 100%;
+		flex: auto;
+	}
+
+	button {
+		width: 100%;
+	}
+
+	.chip {
+		width: auto;
+	}
+
+	.forecast-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 12px;
+	}
+
+	.forecast-card {
+		padding: 14px 10px;
+	}
+}
